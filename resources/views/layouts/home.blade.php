@@ -41,8 +41,8 @@
       <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
       <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
 
-      @yield(css)
-      @yield(headerjs)
+      {{-- @yield(css)
+      @yield(headerjs) --}}
 
    </head>
    <body>
@@ -97,6 +97,6 @@
 
        @include('home._footer')
        @yield('footerjs')
-       
+
    </body>
    </html>

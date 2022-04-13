@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AdminHomeController;
 
-use App\Http\Controllers\HomeController;
- 
+
 // Route::get('/home', [HomeController::class, 'index']);
 // Route::get('/test/{id}/{name}', [HomeController::class, 'test'])->where(['id'=>'[0-9]+','name'=>'[A-Z a-z]+']);
 
@@ -42,3 +42,20 @@ Route::get('/', function () { return view('home.index'); });
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+//admin
+Route::get('/admin',[AdminHomeController::class,'index'])->name('adminhome');
+
+
+
+
+
+
+
+// Route::get('/admin', [/App/Http/Controller/Admin/HomeController::class,'index'])->name('anasayfa');
+
+
+
+
+
