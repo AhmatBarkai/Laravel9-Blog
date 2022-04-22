@@ -8,7 +8,7 @@
               <h5 class="centered">Marcel Newman</h5>
 
             <li class="mt">
-                <a href="index.html">
+                <a href="{{route('adminhome')}}">
                     <i class="fa fa-dashboard"></i>
                     <span>Dashboard</span>
                 </a>
@@ -43,7 +43,7 @@
                     <span>Extra Pages</span>
                 </a>
                 <ul class="sub">
-                    <li class="active"><a  href="blank.html">Blank Page</a></li>
+                    <li class="active"><a  href="{{route('admin_category')}}">Category</a></li>
                     <li><a  href="login.html">Login</a></li>
                     <li><a  href="lock_screen.html">Lock Screen</a></li>
                 </ul>

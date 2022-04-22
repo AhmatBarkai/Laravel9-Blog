@@ -7,6 +7,7 @@
 
 
 @section('content')
+
 @include('adminPanel._content')
 
 @endsection
