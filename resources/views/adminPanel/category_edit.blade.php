@@ -1,7 +1,9 @@
 @extends('layouts.admin')
-@section('title','Category Page')
+@section('title','Category Edit')
 
 @section('content')
+
+
 
 <section id="container" >
     <!-- **********************************************************************************************************************************************************
@@ -258,55 +260,87 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper site-min-height">
-            <h3><i class="fa fa-angle-right"></i> Categories</h3>
+            <br>
+            <br>
+            <h3><i class="fa fa-angle-right"></i> Edit Category</h3>
+
             <div class="row mt">
                 <div class='card'>
                     <div class="card-header">
                         <div class="col-lg-12">
-                            <h3 class="card-title">Category List</h3>
+
                         </div>
+
                     </div>
+                        <div class="row mt">
+                            <div class="col-lg-12">
+                                <div class="form-panel">
+                                 <br>
+                                 <br>
+                                 <br>
+
+                                <form class="form-inline" role="form" action="{{route('admin_category_update',['id'=>$data->id])}}" method="post">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label>Parent</label></label>
+                                       
+                                            <select value="0" class="form-select form-select-lg mb-3" name="parent_id"    aria-label=".form-select-lg example">
+                                            <option value="0">Main Category</option>
+                                                 {{-- <option value="{{$data->id}}">{{$data->title}}</option>  --}}
+                                                @foreach ($datalist as $rs )
+
+                                                    <option value="{{$rs->id}}"  @if ($rs->id==$data->parent_id) selected = "selected" @endif >{{$rs->title}}</option>
+
+                                                @endforeach
+
+
+                                          </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputPassword2">Title</label>
+                                        Title :
+                                        <input type="text" name="title"  value="{{$data->title}}"  class="form-control" id="exampleInputPassword2" placeholder="title">
+                                    </div><br>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputEmail2"></label>
+                                        Keywords : <input type="text" name="keywords" value="{{$data->keywords}}" class="form-control" id="exampleInputEmail2" placeholder="Enter keywords">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputEmail2"></label>
+                                        Description : <input type="text" name="description" value="{{$data->description}}" class="form-control" id="exampleInputEmail2" placeholder="Enter description">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputEmail2"></label>
+                                        Slug :    <input type="text" name="slug" value="{{$data->slug}}" class="form-control" id="exampleInputEmail2" placeholder="Enter slug">
+                                    </div>
+
+                                    <br>
+                                    <select class="form-select form-select-lg mb-3" name="status"   aria-label=".form-select-lg example">
+                                        <option selected>Status</option>
+                                        <option selected='selected'>{{$data->status}}</option>
+                                        <option >True</option>
+                                        <option> Flase</option>
+
+                                      </select>
+
+                                    <br>
+
+                                    <button type="submit"  class="btn btn-theme">Submit</button>
+
+                                </form>
+
+                                </div><!-- /form-panel -->
+                            </div><!-- /col-lg-12 -->
+                        </div>
+
+
 
 
 
                     <div class="col-md-12 mt">
                         <div class="content-panel">
-                            <h4><i class="fa fa-angle-right"></i> Adding</h4><hr><table class="table table-hover">
-
-
-                                <thead>
-                                <tr>
-
-                                    <th>Id</th>
-                                    <th>Parent_ID</th>
-                                    <th>Title</th>
-                                    <th>Status</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
-
-                                </tr>
-                                </thead>
-                                @foreach ($datalist as $rs )
-
-                                    <tbody>
-                                    <tr>
-                                        <td>{{$rs->id}}</td>
-                                        <td>{{$rs->parent_id}}</td>
-                                        <td>{{$rs->title}}</td>
-                                        <td>{{$rs->status}}</td>
-                                        <td><a href="{{route('admin_category_edit',['id'=>$rs->id])}}">Edit</a></td>
-
-                                        <td> <a href="{{route('admin_category_delete' , ['id'=>$rs->id])}}" onclick="return confirm('Are you sure to delete this category?')">Delete</a></td>
-
-                                    </tr>
-                                @endforeach
-
-                                    </tbody>
-
-                            </table>
-                            {{-- <a hrref="{{route('admin_category_add')}}"  class="btn btn-theme">Add Category</a> --}}
-                            <br>
-                            <a href="{{route('admin_category_add')}}" class="btn btn-block btn-info" style="width: 20%;">Add Category</a>
+                            <h4><i class="fa fa-angle-right"></i> Table</h4><hr>
                           </div><!-- --/content-panel ---->
                     </div>
 
@@ -319,7 +353,7 @@
 
       </section><! --/wrapper -->
     </section><!-- /MAIN CONTENT -->
-
+    <a href="#">Add Category</a>
     <!--main content end-->
     <!--footer start-->
     <footer class="site-footer">
@@ -333,6 +367,8 @@
     <!--footer end-->
 </section>
 
-
-
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 @endsection
