@@ -110,7 +110,7 @@ class AdminCategoryController extends Controller
     public function update(Request $request, Category $category,$id)
     {
         $data=Category::find($id);
-        
+
         $data->parent_id = $request->input('parent_id');
         $data->title = $request->input('title');
         $data->keywords = $request->input('keywords');

@@ -44,6 +44,8 @@ Route::get('/', function () { return view('home.index'); });
 //Admin Group
 
 Route::middleware('auth')->prefix('admin')->group(function () {
+
+    #Category
     Route::get('/',[\App\Http\Controllers\HomeController::class,'index'] )->name('admin_home');
     Route::get( 'category' ,[\App\Http\Controllers\AdminCategoryController::class,'index'])->name('admin_category');
     Route::post('category/create',[\App\Http\Controllers\AdminCategoryController::class,'create'])->name('admin_category_create');
@@ -52,13 +54,35 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get( 'category/edit/{id}',[\App\Http\Controllers\AdminCategoryController::class,'edit'])->name('admin_category_edit');
     Route::post( 'category/update/{id}',[\App\Http\Controllers\AdminCategoryController::class,'update'])->name('admin_category_update');
 
-    // Route::get(   ,[\App\Http\Controllers\AdminCategoryController::class,''])->name('');
-
-}
 
 
+    #Product
 
-);
+    Route::prefix('product')->group(function(){
+
+
+        Route::get( '/' ,[\App\Http\Controllers\ProductController::class,'index'])->name('admin_products');
+        Route::post( 'store' ,[\App\Http\Controllers\ProductController::class,'store'])->name('admin_product_store');
+        Route::get( 'create' ,[\App\Http\Controllers\ProductController::class,'create'])->name('admin_product_create');
+        Route::get( 'edit/{id}',[\App\Http\Controllers\ProductController::class,'edit'])->name('admin_product_edit');
+        Route::post( 'update/{id}',[\App\Http\Controllers\ProductController::class,'update'])->name('admin_product_update');
+        Route::get('delete/{id}',[\App\Http\Controllers\ProductController::class,'destroy'])->name('admin_product_delete');
+
+
+        // Route::get(   ,[\App\Http\Controllers\AdminCategoryController::class,''])->name('');
+
+
+
+
+
+
+
+
+
+    });
+
+
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
